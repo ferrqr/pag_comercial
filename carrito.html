@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Huertita de Luz</title>
+    <link rel="stylesheet" href="estilos/estilos.css">
+
+    <style>
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .card {
+            display: inline-block;
+            background-color: white;
+            border: 1px solid #b7d7a8;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 10px;
+            width: 250px;
+            text-align: center;
+        }
+
+        .card img {
+            width: 180px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .boton {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .boton:hover {
+            background-color: #2e7d32;
+        }
+
+        .carrito {
+            background-color: white;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 300px;
+        }
+
+        .carrito ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .carrito li {
+            padding: 8px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        footer {
+            background-color: #4caf50;
+            color: white;
+            padding: 15px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>La Huertita de Luz</h1>
+        <p>Verduras frescas para tu hogar</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="catalogo.html">Catálogo</a>
+        <a href="carrito.html">Carrito</a>
+        <a href="contacto.html">Contacto</a>
+    </nav>
+
+    <section>
+        <h2>Nuestro catálogo</h2>
+        <p>Conoce nuestras verduras frescas.</p>
+
+        <div class="card">
+            <h2>Pepinos</h2>
+            <img src="img/pepinos.jpg" alt="Pepinos frescos">
+            <p>Precio: $15 por kilo</p>
+
+            <button class="boton" onclick="agregarAlCarrito('Pepinos - $15')">
+                Agregar al carrito
+            </button>
+        </div>
+
+        <div class="card">
+            <h2>Jitomates</h2>
+            <img src="img/jitomates.jpg" alt="Jitomates frescos">
+            <p>Precio: $15 por kilo</p>
+
+            <button class="boton" onclick="agregarAlCarrito('Jitomates - $15')">
+                Agregar al carrito
+            </button>
+        </div>
+
+        <div class="carrito">
+            <h2>Carrito (<span id="cantidad">0</span>)</h2>
+
+            <ul id="listaCarrito"></ul>
+
+            <h3 id="total">Total: $0</h3>
+
+            <button class="boton" onclick="vaciarCarrito()">
+                Vaciar carrito
+            </button>
+        </div>
+    </section>
+
+    <footer>
+        <p>La Huertita de Luz</p>
+        <p>¡Verduras frescas para tu hogar!</p>
+    </footer>
+
+    <script>
+        let cantidad = 0;
+        let total = 0;
+
+        const listaCarrito = document.getElementById("listaCarrito");
+        const cantidadSpan = document.getElementById("cantidad");
+
+        function agregarAlCarrito(producto) {
+            cantidad++;
+            total = total + 15;
+
+            cantidadSpan.textContent = cantidad;
+
+            const li = document.createElement("li");
+            li.textContent = producto;
+            listaCarrito.appendChild(li);
+
+            document.getElementById("total").textContent =
+                "Total: $" + total;
+        }
+
+        function vaciarCarrito() {
+            cantidad = 0;
+            total = 0;
+
+            cantidadSpan.textContent = cantidad;
+            listaCarrito.innerHTML = "";
+
+            document.getElementById("total").textContent =
+                "Total: $0";
+        }
+    </script>
+
+</body>
+</html>
+```
